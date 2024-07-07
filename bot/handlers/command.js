@@ -16,16 +16,18 @@ class Commands {
         this.admin()
         this.start()
         this.raceAction()
+        this.AdmPainel()
     }
 
     admin() {
         
-        this.bot.command('admin', AdmMiddleWare, (ctx) => {
-            const stts = new Sucessful('Welcome to Painel', 200);
-            ctx.reply(stts.Next());
- 
+            this.bot.command('admin', AdmMiddleWare,  (ctx) => {
+                const stts = new Sucessful('Welcome to Painel', 200);
+                ctx.reply(stts.Next());
+    
           ctx.reply(`Selecione uma das consulta`, Markup.inlineKeyboard([
-            Markup.button.callback('Consultas feitas', 'CONSULTN'),
+            Markup.button.callback('Consultar corrida - Wager', 'CONSULTALL'),
+            Markup.button.callback('Consulta individual', 'CONSULTU'),
             Markup.button.callback('Corrida', 'RACEN')
           ]))
         });
@@ -48,6 +50,31 @@ class Commands {
            
         });
     }
+
+    async AdmPainel() {
+        this.bot.action('CONSULTU', (ctx) => {
+            ctx.reply('Use /start clique em race e então digite o nome do user que você quer verificar')
+        })
+
+
+
+        this.bot.action('CONSULTALL', async (ctx) => {
+            const Consult = new DbUtils
+
+            const query = await Consult.QueryAllUsers()
+
+            const resultmap = query.map(row => `UserRainbet: ${row.UserRainbet}, Wager: ${row.Wager}`);
+          
+            
+            const resultString = resultmap.join('\n');
+
+            ctx.reply(resultString)
+
+
+ 
+        })
+    }
+
 
     
     async ConsultWager(User) {
@@ -74,7 +101,22 @@ class Commands {
 
     return ConsultData
   }
- }
+
+
+  async FetchDataFromDb() {
+    const Consult = new DbUtils
+
+    const query = await Consult.QueryAllUsers()
+
+    const resultmap = query.map(row => `UserRainbet: ${row.UserRainbet}, Wager: ${row.Wager}`);
+  
+    
+    const resultString = resultmap.join('\n');
+
+    console.log(resultString)
+
+  }
+  }
 
 
 

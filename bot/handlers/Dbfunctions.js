@@ -66,6 +66,28 @@ const Db = await RunDb()
     })
  } catch(err) {}
     })
+    
+}
+
+async QueryAllUsers() {
+
+const Db = await RunDb()
+
+    return new Promise((resolve, reject) => {
+        try {
+          Db.all(`SELECT * from USERS`, function(err, rows) {
+            if(err) {
+                reject('Erro na consulta')
+                throw new Error('Erro na consulta')
+
+            }
+       resolve(rows)
+
+          })
+        } catch(err) {
+
+        }
+    })
 }
 
 }

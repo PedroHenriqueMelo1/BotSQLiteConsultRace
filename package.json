@@ -11,6 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cloudflare-scraper": "^2.0.0",
+    "jsdom": "^24.1.0",
+    "puppeteer": "^22.12.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "sqlite3": "^5.1.7",
     "telegraf": "^4.16.3"
   },

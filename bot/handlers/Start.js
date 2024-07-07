@@ -8,6 +8,8 @@ async function Start(bot)   {
   const commands = new Commands(bot)
 
 
+const DataFromDb = await commands.FetchDataFromDb()
+
   function ReplaceString(value) {
 
     return   value.toString().replace('.', ',')
@@ -79,4 +81,4 @@ const leaderboardMessage = '*LEADERBOARD 🏁 R$ 150,00 7 DIAS*' +
 
  
   
-  module.exports = { Start }
+  module.exports = { Start, }
