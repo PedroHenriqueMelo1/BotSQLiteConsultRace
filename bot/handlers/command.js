@@ -71,11 +71,16 @@ class Commands {
             
             const resultString = resultmap.join('\n');
 
-            ctx.reply(resultString)
+            if(!resultString) {
+                ctx.reply('Não achei nada no banco de dados')
+                return;
+            }
 
 
  
         })
+
+        this.bot.action
     }
 
 

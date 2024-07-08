@@ -5,7 +5,7 @@ const {state} = require("./MiddleWare")
 
 async function Start(bot)   {
 
-  var n = 0
+
 
   const commands = new Commands(bot)
 
