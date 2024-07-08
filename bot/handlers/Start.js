@@ -30,6 +30,7 @@ const DataFromDb = await commands.FetchDataFromDb()
 
      if(Data.length === 0 ) {
       ctx.reply('Não encontrei o seu user no nosso banco de dados')
+      state.isAllowedToPutName = false;
       return;
       
      }

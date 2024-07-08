@@ -4,12 +4,7 @@ const { Start } = require("./bot/handlers/Start")
 const { RunDb } = require("./bot/db");
 const {DbUtils } = require("./bot/handlers/Dbfunctions")
 
-const db = new DbUtils
 
-async  function clear() {
- await db.ClearDbData()
- console.log('Dados excluidos')
-}
 
 Start(bot) // Startando bot
 
