@@ -38,7 +38,7 @@ class Commands {
             const userid = ctx.from.first_name;  
             ctx.reply(`Olá ${userid} O que deseja fazer?`, Markup.inlineKeyboard([
                 Markup.button.callback('Corrida Semanal 🏁', 'RACE'),
-                Markup.button.callback('Bugs 🐞', 'BUG')
+         
             ]));
         });
     }
@@ -51,9 +51,7 @@ class Commands {
            
         });
 
-        this.bot.action('BUG', (ctx) => {
-            ctx.reply('Em caso de bug entre em contato com @pedroalmeida')
-        })
+       
     }
 
     async AdmPainel() {
