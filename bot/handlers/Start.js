@@ -22,7 +22,7 @@ const DataFromDb = await commands.FetchDataFromDb()
 
     if(state.isAllowedToPutName) {
      const User = ctx.message.text
-  n++
+
   console.log('Um user passou por aqui número de entradas ' + n)
      const Data =  await commands.ConsultWager(User)
 
