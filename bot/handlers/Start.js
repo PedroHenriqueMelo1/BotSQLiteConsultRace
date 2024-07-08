@@ -5,7 +5,7 @@ const {state} = require("./MiddleWare")
 
 async function Start(bot)   {
 
-  var n;
+  var n = 0
 
   const commands = new Commands(bot)
 
@@ -30,6 +30,7 @@ const DataFromDb = await commands.FetchDataFromDb()
 
      if(Data.length === 0 ) {
       ctx.reply('Não encontrei o seu user no nosso banco de dados')
+      return;
       
      }
    else{ ctx.reply(`${User} Aqui está Seu Wager Semanal R$ ${ReplaceString(Data[0].Wager)} Doláres `)
