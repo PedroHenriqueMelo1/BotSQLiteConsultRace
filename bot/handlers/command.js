@@ -37,7 +37,8 @@ class Commands {
         this.bot.start((ctx) => {
             const userid = ctx.from.first_name;  
             ctx.reply(`Olá ${userid} O que deseja fazer?`, Markup.inlineKeyboard([
-                Markup.button.callback('Corrida Semanal 🏁', 'RACE')
+                Markup.button.callback('Corrida Semanal 🏁', 'RACE'),
+                Markup.button.callback('Bugs 🐞', 'BUG')
             ]));
         });
     }
@@ -49,6 +50,10 @@ class Commands {
             ctx.reply('Envie seu usuário na RAINBET para consultar seu nome na corrida');
            
         });
+
+        this.bot.action('BUG', (ctx) => {
+            ctx.reply('Em caso de bug entre em contato com @pedroalmeida')
+        })
     }
 
     async AdmPainel() {
