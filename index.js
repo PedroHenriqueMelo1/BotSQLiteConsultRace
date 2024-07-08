@@ -9,7 +9,6 @@ const {DbUtils } = require("./bot/handlers/Dbfunctions")
 Start(bot) // Startando bot
 
 
-clear()
 
 
 bot.launch(() => {
