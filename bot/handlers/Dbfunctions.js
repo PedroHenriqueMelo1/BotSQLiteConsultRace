@@ -90,6 +90,25 @@ const Db = await RunDb()
     })
 }
 
+
+async ClearDbData() {
+    const Db = await RunDb()
+    return new Promise((resolve, reject) => {
+        try{
+  Db.run(`DELETE  FROM USERS`, function(err) {
+    if(err) {
+        console.log('Não consegui ')
+        reject('err')
+    }
+    else{
+  console.log('Dados apagados do DataBase')
+  resolve('Sucessful')
+    }
+  })
+        }catch(err) {}
+    })
+}
+
 }
 
 
