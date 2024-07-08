@@ -27,7 +27,7 @@ const isAllowedToPutName = (ctx, next) => {
 }
  
 const ActiveRace = (ctx, next) => {
-  const ActiveRace = false
+  const ActiveRace = true
   if(ActiveRace) {
     next()
     return;
