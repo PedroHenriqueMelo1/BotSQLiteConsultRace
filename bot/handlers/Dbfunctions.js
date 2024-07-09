@@ -83,10 +83,7 @@ async ClearDbData() {
     })
 }
 
-async Point0() {
-    const Date = await FetchData()
-    
-return Date}
+
 
 async Point0(user) {
     
@@ -114,35 +111,69 @@ const db = await RunDb()
 const Data = await FetchData()
 
 Data.forEach((i) => {
-    db.run(`INSERT into WeeklyWager (userId, wager) VALUES (?,?)`, [i.user, i.wager])
+    db.run(`INSERT into RainbetPoint0 (RainbetUser, wager) VALUES (?,?)`, [i.user, i.wager])
 })
 
-console.log('Dados Atualiados!')
+console.log('Dados atualizados!')
 
 }
 
-
-async CalcWeeklyy(user) {
+async WeeklyDb(user) {
     const db = await RunDb()
-    
-    return new Promise((resolve, reject) => {
-        db.all(`SELECT * from WeeklyWager WHERE userid = ?`, [user], function(err, rows) {
-            if(err) {
-                reject('Erro na promise')
 
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * FROM WeeklyWager WHERE userid = (?)`, [user], function(err, rows) {
+            if(err) {
+                reject('User não encontrado no db')
             }
             resolve(rows)
-        })
+        } )
     })
+}
+
+async LeardBoard() {
+    const db = await RunDb()
+
+ return new Promise((rct, rsv) => {
+ db.run(`INSERT INTO LeaderBoard (userid, wager)
+ SELECT 
+     r.RainbetUser AS userid,
+     w.wager - r.wager AS wager
+ FROM 
+     RainbetPoint0 r
+ JOIN 
+     WeeklyWager w ON r.RainbetUser = w.userid;
+ `)
+ rct('Tabela LeardBoard atualizada com sucesso')
+ })
+
+ 
+
+}
+
+async FetchTopLeardBoard() {
+    const db = await RunDb()
+
+   return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM LeaderBoard
+        ORDER BY wager DESC
+        LIMIT 10`, function(err, rows) {
+
+            if(err) {
+                console.log('Erro')
+            }
+            resolve(rows)
+        
+        })
+        
+    
+   }) 
+}
+ 
 
 }
 
 
-}
-
-
-
-const Utils = new DbUtils
 
 
 

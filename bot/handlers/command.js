@@ -169,13 +169,26 @@ return 'err'
      const Consult = new DbUtils
 
      try {
-      const Date = await Consult.CalcWeeklyy(user)
+      const Date = await Consult.WeeklyDb(user)
       return Date
      }
      catch(err) {
-      console.log(`Erro na sua promise`)
+      console.log(`Promesa rejeitada user não encontrado no Banco de Dados: WeeklyWager`)
      }
   }
+
+  async FetchLeaderBoard() {
+    const Consult = new DbUtils
+
+    try {
+    const LeaderBoard = await Consult.FetchTopLeardBoard()
+      return LeaderBoard
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  async
 }
 
 

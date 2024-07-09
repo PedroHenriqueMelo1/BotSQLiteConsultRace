@@ -1,6 +1,6 @@
 const fs = require('fs').promises; // Use fs.promises para métodos assíncronos
 
-const filePath = 'Test/data.csv'; // Caminho para o arquivo CSV
+const filePath = 'Test/Point0.csv'; // Caminho para o arquivo CSV
 
 async function NodeData(filePath) {
   try {
@@ -33,15 +33,9 @@ async function NodeData(filePath) {
 async function FetchData() {
  const Date = await NodeData(filePath)
 
-const ReplaceNumbers = Date.map(date => {
-    return {
-        ...date, 
-        wager: date.wager.toString().replace('.', ',')
-    }
-})
 
 
-return ReplaceNumbers
+return Date
 
 }
 

@@ -6,42 +6,49 @@ const {state} = require("./MiddleWare")
 async function Start(bot)   {
 
 
-
   const commands = new Commands(bot)
+
 
 
   async function FetchWagerOfUser(user) {
  
     const Result = await commands.FetchPoint0(user)
-    const ow = await commands.FetchAtualWager('Whafe')
+    const ow = await commands.FetchAtualWager(user)
 
-    const OldN = Result[0].wager
-  const InDayDb = ow[0].wager
+    try{
+      const ActualWager = ow[0].wager || null
+      const Point0Wager = Result[0].wager || null
 
-
-
-    if(Result == 'err') {
-      console.log('Erro na sua promise provalvemente o user não está no nosso banco de dados')
-      return
-    }
-
-var Wager = {
-  'Point0': OldN,
-  'Weekly': InDayDb
+if(Point0Wager == null ) {
+  return 'SemWager'
 }
 
-const oldNNum = parseInt(OldN, 10);
-const inDayDbNum = parseInt(InDayDb, 10);
-const Soma =  inDayDbNum - oldNNum
+      function CalcWeekly() {
+      const AcWager = parseInt(ActualWager)
+      const  Point0 = parseInt(Point0Wager)
 
-    return (Soma)
+  
+
+      return AcWager - Point0
+      }
+     return CalcWeekly()
+    }
+    catch(err) {
+      
+  
+    }
 
   }
 
 
   function ReplaceString(value) {
 
-    return   value.toString().replace('.', ',')
+    const valor = parseInt(value)
+
+    valor.toFixed(1
+
+    )
+    return   valor.toString().replace('.', ',')
    }
 
 
@@ -56,10 +63,35 @@ const Soma =  inDayDbNum - oldNNum
 
      const WeeklyRace = await FetchWagerOfUser(User)
 
-
-
+     if(WeeklyRace == undefined) {
+      ctx.reply(`User não encontrado verifica o nome e tente novamente.`)
+      return
+     }
   
-    ctx.reply(`${User} Aqui está Seu Wager Semanal  ${ReplaceString(WeeklyRace)}  `)
+     if(WeeklyRace == 'SemWager') {
+      ctx.reply(`Você não tem Wager Semanal`)
+      return
+     }
+
+     const Leaderboard = await commands.FetchLeaderBoard()
+     
+
+    ctx.reply(`${User} Aqui está Seu Wager Semanal \$${ReplaceString(WeeklyRace)} Doláres`)
+
+    setTimeout(() => {
+
+      ctx.reply(`*       LEADERBOARD 🏁 R$ 150,00 7 Dias
+        1° \\- ${Leaderboard[0].userid} Wager:  \$ ${ReplaceString(Leaderboard[0].wager)} 🥇
+        2 \\- ${Leaderboard[1].userid} Wager:  \$ ${ReplaceString(Leaderboard[1].wager)}  🥈
+        3 \\- ${Leaderboard[2].userid} Wager:  \$ ${ReplaceString(Leaderboard[2].wager)}  🥉
+        4 \\- ${Leaderboard[3].userid} Wager:  \$ ${ReplaceString(Leaderboard[3].wager)}
+        5 \\- ${Leaderboard[4].userid} Wager:  \$ ${ReplaceString(Leaderboard[4].wager)}
+        6 \\- ${Leaderboard[5].userid} Wager:  \$ ${ReplaceString(Leaderboard[5].wager)}
+        7 \\- ${Leaderboard[6].userid} Wager:  \$ ${ReplaceString(Leaderboard[6].wager)}
+        8 \\- ${Leaderboard[7].userid} Wager:  \$ ${ReplaceString(Leaderboard[7].wager)}
+        9 \\- ${Leaderboard[8].userid} Wager:  \$ ${ReplaceString(Leaderboard[8].wager)}
+        10 \\- ${Leaderboard[9].userid} Wager:  \$ ${ReplaceString(Leaderboard[9].wager)}*`, {parse_mode: "MarkdownV2"})
+    }, 500)
   
 
 
