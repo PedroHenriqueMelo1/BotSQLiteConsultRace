@@ -1,7 +1,7 @@
 const { Dados } = require("./dateweekly");
 const { RunDb } = require("../db");
 const { Db } = require("sqlite3");
-
+const {FetchData} = require("../../Test/test")
 
 
 class DbUtils {
@@ -14,38 +14,12 @@ class DbUtils {
 
 
 async Init(InitiDb) {
-this.DataBase = await RunDb()
+const DataBase = await RunDb()
+
+return DataBase
 
 }
 
-async QueryWager(us) {
-  let Data = []
-
-  try {
- const Db = await RunDb()
-
- return new Promise((resolve, reject ) => {
-    Db.all(`SELECT WAGER FROM USERS WHERE UserRainbet = ?`, [us], (err, rows) => {
-        if (err) {
-            console.log('Erro na sua query')
-            reject(err)
-        }  else {
-            if (rows.length == 0) {
-               Data.push(rows)
-            }
-          
-            resolve(rows)
-        }
-  
-        
-    })
- })
-  } catch(err) {    
-  console.log('Erro')
-  }
-
-    
-}
 
 
 async QueryTop10() {
@@ -53,7 +27,7 @@ const Db = await RunDb()
 
     return new Promise((resolve, reject) => {
  try {
-    Db.all(`SELECT * FROM USERS ORDER BY WAGER DESC LIMIT 10`, function (err, rows) {
+    Db.all(`SELECT * FROM WeeklyWager ORDER BY WAGER DESC LIMIT 10`, function (err, rows) {
         if(err) {
             console.log('Erro ao buscar esses dados')
             reject(err)
@@ -108,6 +82,61 @@ async ClearDbData() {
         }catch(err) {}
     })
 }
+
+async Point0() {
+    const Date = await FetchData()
+    
+return Date}
+
+async Point0(user) {
+    
+    const db = await RunDb()
+
+ return new Promise((resolve, reject) => {
+    db.all(`SELECT * FROM RainbetPoint0 WHERE RainbetUser = (?)`, [user], function(err, rows) {
+
+      if(err) {
+        reject('Not found')
+      }
+      
+      resolve(rows)
+       })
+
+ })
+
+
+
+}
+
+async DailyDbPut() {
+ 
+const db = await RunDb()
+const Data = await FetchData()
+
+Data.forEach((i) => {
+    db.run(`INSERT into WeeklyWager (userId, wager) VALUES (?,?)`, [i.user, i.wager])
+})
+
+console.log('Dados Atualiados!')
+
+}
+
+
+async CalcWeeklyy(user) {
+    const db = await RunDb()
+    
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * from WeeklyWager WHERE userid = ?`, [user], function(err, rows) {
+            if(err) {
+                reject('Erro na promise')
+
+            }
+            resolve(rows)
+        })
+    })
+
+}
+
 
 }
 

@@ -10,7 +10,34 @@ async function Start(bot)   {
   const commands = new Commands(bot)
 
 
-const DataFromDb = await commands.FetchDataFromDb()
+  async function FetchWagerOfUser(user) {
+ 
+    const Result = await commands.FetchPoint0(user)
+    const ow = await commands.FetchAtualWager('Whafe')
+
+    const OldN = Result[0].wager
+  const InDayDb = ow[0].wager
+
+
+
+    if(Result == 'err') {
+      console.log('Erro na sua promise provalvemente o user não está no nosso banco de dados')
+      return
+    }
+
+var Wager = {
+  'Point0': OldN,
+  'Weekly': InDayDb
+}
+
+const oldNNum = parseInt(OldN, 10);
+const inDayDbNum = parseInt(InDayDb, 10);
+const Soma =  inDayDbNum - oldNNum
+
+    return (Soma)
+
+  }
+
 
   function ReplaceString(value) {
 
@@ -23,47 +50,18 @@ const DataFromDb = await commands.FetchDataFromDb()
     if(state.isAllowedToPutName) {
      const User = ctx.message.text
 
-  console.log('Um user passou por aqui número de entradas ' + n)
-     const Data =  await commands.ConsultWager(User)
 
-     console.log(Data)
+  console.log('Um user passou por aqui número de entradas ' )
+    
 
-     if(Data.length === 0 ) {
-      ctx.reply('Não encontrei o seu user no nosso banco de dados')
-      state.isAllowedToPutName = false;
-      return;
-      
-     }
-   else{ ctx.reply(`${User} Aqui está Seu Wager Semanal R$ ${ReplaceString(Data[0].Wager)} Doláres `)
-  }
+     const WeeklyRace = await FetchWagerOfUser(User)
 
 
 
+  
+    ctx.reply(`${User} Aqui está Seu Wager Semanal  ${ReplaceString(WeeklyRace)}  `)
+  
 
- const top10index = await commands.ConsultTop10()
-
-
- const Top10 = top10index.map(item => ({
-  UserRainbet: item.UserRainbet,
-  Wager: item.Wager
-}));
-
-
-
-const leaderboardMessage = '*LEADERBOARD 🏁 R$ 150,00 7 DIAS*' +
-`\n1 \\- ${Top10[0].UserRainbet}  Wager: \$${ReplaceString(Top10[0].Wager)} 🥇` +
-`\n2 \\- ${Top10[1].UserRainbet}  Wager: \$${ReplaceString(Top10[1].Wager)} 🥈` +
-`\n3 \\- ${Top10[2].UserRainbet}  Wager: \$${ReplaceString(Top10[2].Wager)} 🥉` +
-`\n4 \\- ${Top10[3].UserRainbet}  Wager: \$${ReplaceString(Top10[3].Wager)}` +
-`\n5 \\- ${Top10[4].UserRainbet}  Wager: \$${ReplaceString(Top10[4].Wager)}` +
-`\n6 \\- ${Top10[5].UserRainbet}  Wager: \$${ReplaceString(Top10[5].Wager)}` +
-`\n7 \\- ${Top10[6].UserRainbet}  Wager: \$${ReplaceString(Top10[6].Wager)}` +
-`\n8 \\- ${Top10[7].UserRainbet}  Wager: \$${ReplaceString(Top10[7].Wager)}` +
-`\n9 \\- ${Top10[8].UserRainbet}  Wager: \$${ReplaceString(Top10[8].Wager)}` +
-`\n10 \\- ${Top10[9].UserRainbet}  Wager: \$${ReplaceString(Top10[9].Wager)}`;
-
- 
-      ctx.reply(leaderboardMessage, {parse_mode: "MarkdownV2"})
 
 
   state.isAllowedToPutName = false;
@@ -84,4 +82,4 @@ const leaderboardMessage = '*LEADERBOARD 🏁 R$ 150,00 7 DIAS*' +
 
  
   
-  module.exports = { Start, }
+  module.exports = { Start }

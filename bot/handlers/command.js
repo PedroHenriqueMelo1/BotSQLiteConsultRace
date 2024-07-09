@@ -1,7 +1,8 @@
 const { AdmMiddleWare, isAllowedToPutName, ActiveRace } = require('./MiddleWare');
 const { Sucessful } = require('../../msgerr');
 const { Markup } = require('telegraf');  // Adicionando importação do Markup
-const {DbUtils} = require("./Dbfunctions")
+const {DbUtils} = require("./Dbfunctions");
+const { RunDb } = require('../db');
 
 
 
@@ -85,16 +86,7 @@ class Commands {
 
 
     
-    async ConsultWager(User) {
-        const Consult = new DbUtils
-
-      const ConsultData = await  Consult.QueryWager(User)
-
-
-      return ConsultData
-
-        
-    }
+    
   
     ShowRace(ctx) {
        ctx.reply(`*LEADERBOARD  🏁  - 7 Dias R$ 150,00*`)
@@ -125,8 +117,66 @@ class Commands {
 
   }
 
-  as
+
+  async WeeklyAtt(user) {
+    const Consult = new DbUtils
+
+try {
+ const Data =  await Consult.CalcWeekly(user)
+ if(Data.length === 0) {
+    throw new Error('Err')
+ }
+
+ return Data
+
+} catch(err) {
+
+
+return 'err'
+}
+
   }
+
+  async DataWeekly() {
+    const Consult  = new DbUtils
+
+    Consult.DailyDbPut()
+  }
+
+
+  async FetchPoint0(user) {
+
+    const Consult = new DbUtils
+
+try {
+ const Data =  await Consult.Point0(user)
+ if(Data.length === 0) {
+    throw new Error('Err')
+ }
+
+ return Data
+
+} catch(err) {
+
+
+return 'err'
+}
+
+  }
+
+
+  async FetchAtualWager(user) {
+     const Consult = new DbUtils
+
+     try {
+      const Date = await Consult.CalcWeeklyy(user)
+      return Date
+     }
+     catch(err) {
+      console.log(`Erro na sua promise`)
+     }
+  }
+}
 
 
 
