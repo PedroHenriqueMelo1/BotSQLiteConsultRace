@@ -76,21 +76,21 @@ if(Point0Wager == null ) {
      const Leaderboard = await commands.FetchLeaderBoard()
      
 
-    ctx.reply(`${User} Aqui está Seu Wager Semanal \R$${ReplaceString(WeeklyRace)} `)
+    ctx.reply(`${User} Aqui está Seu Wager Semanal R$${ReplaceString(WeeklyRace)} `)
 
     setTimeout(() => {
 
       ctx.reply(`*       LEADERBOARD 🏁 R$ 150,00 7 Dias
-        1° \\- ${Leaderboard[0].userid} Wager:  \R$ ${ReplaceString(Leaderboard[0].wager)} 🥇
-        2 \\- ${Leaderboard[1].userid} Wager:  \R$ ${ReplaceString(Leaderboard[1].wager)}  🥈
-        3 \\- ${Leaderboard[2].userid} Wager:  \R$ ${ReplaceString(Leaderboard[2].wager)}  🥉
-        4 \\- ${Leaderboard[3].userid} Wager:  \R$ ${ReplaceString(Leaderboard[3].wager)}
-        5 \\- ${Leaderboard[4].userid} Wager:  \R$ ${ReplaceString(Leaderboard[4].wager)}
-        6 \\- ${Leaderboard[5].userid} Wager:  \R$ ${ReplaceString(Leaderboard[5].wager)}
-        7 \\- ${Leaderboard[6].userid} Wager:  \R$ ${ReplaceString(Leaderboard[6].wager)}
-        8 \\- ${Leaderboard[7].userid} Wager:  \R$ ${ReplaceString(Leaderboard[7].wager)}
-        9 \\- ${Leaderboard[8].userid} Wager:  \R$ ${ReplaceString(Leaderboard[8].wager)}
-        10 \\- ${Leaderboard[9].userid} Wager:  \R$ ${ReplaceString(Leaderboard[9].wager)}*`, {parse_mode: "MarkdownV2"})
+        1° \\- ${Leaderboard[0].userid} Wager:  R$ ${ReplaceString(Leaderboard[0].wager)} 🥇
+        2 \\- ${Leaderboard[1].userid} Wager:  R$ ${ReplaceString(Leaderboard[1].wager)}  🥈
+        3 \\- ${Leaderboard[2].userid} Wager:  R$ ${ReplaceString(Leaderboard[2].wager)}  🥉
+        4 \\- ${Leaderboard[3].userid} Wager:  R$ ${ReplaceString(Leaderboard[3].wager)}
+        5 \\- ${Leaderboard[4].userid} Wager:  R$ ${ReplaceString(Leaderboard[4].wager)}
+        6 \\- ${Leaderboard[5].userid} Wager:  R$ ${ReplaceString(Leaderboard[5].wager)}
+        7 \\- ${Leaderboard[6].userid} Wager:  R$ ${ReplaceString(Leaderboard[6].wager)}
+        8 \\- ${Leaderboard[7].userid} Wager:  R$ ${ReplaceString(Leaderboard[7].wager)}
+        9 \\- ${Leaderboard[8].userid} Wager:  R$ ${ReplaceString(Leaderboard[8].wager)}
+        10 \\- ${Leaderboard[9].userid} Wager:  R$ ${ReplaceString(Leaderboard[9].wager)}*`, {parse_mode: "MarkdownV2"})
     }, 500)
   
 
