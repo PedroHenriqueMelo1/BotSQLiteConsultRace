@@ -58,8 +58,6 @@ if(Point0Wager == null ) {
     if(state.isAllowedToPutName) {
      const User = ctx.message.text
 
-
-  console.log('Um user passou por aqui número de entradas ' )
     
 
      const WeeklyRace = await FetchWagerOfUser(User)

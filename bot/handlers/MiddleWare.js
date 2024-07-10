@@ -3,8 +3,11 @@ const admins = [1388585064, 1297713214, 2043863224];  // IDs dos administradores
 
 
 var state = {
-  isAllowedToPutName: false
+  isAllowedToPutName: false,
+   ContagemDeConsultas: 1
 };
+
+
 
 const AdmMiddleWare = (ctx, next) => {
   console.log('Alguém está tentando usar o painel ADM');
@@ -19,8 +22,10 @@ const AdmMiddleWare = (ctx, next) => {
 };
 
 const isAllowedToPutName = (ctx, next) => {
- console.log('Um usuário está passando pelo middleware')
+ console.log('Um usuário está passando pelo middleware contagem: ' + state.ContagemDeConsultas )
   state.isAllowedToPutName = true
+
+state.ContagemDeConsultas++
 
   return  next()
 

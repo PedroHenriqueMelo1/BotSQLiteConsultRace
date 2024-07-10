@@ -155,9 +155,10 @@ async LeardBoard() {
 
     const queryconsult = () => {
         return new Promise((resolve, reject) => {
-            db.run(`DELETE FROM LEARDBOARD`, (err) => {
+            db.run(`DELETE FROM LEADERBOARD`, (err) => {
                 if(err) reject('Erro na query')
             })
+        console.log(`Dados reescrevidos`)
         resolve('')
         })
     }
