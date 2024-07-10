@@ -1,4 +1,4 @@
-const { Dados } = require("./dateweekly");
+
 const { RunDb } = require("../db");
 const { Db } = require("sqlite3");
 const {FetchData} = require("../../Test/test")
@@ -110,11 +110,30 @@ async DailyDbPut() {
 const db = await RunDb()
 const Data = await FetchData()
 
+const Query = () => {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM WeeklyWager` , function(err) {
+        if(err) {
+            console.log(`Erro ao remover dados de weeklywager`)
+            reject('Incorreto')
+            return
+    
+        }
+        console.log(`Dados de WeeklyWager Apagado`)
+        resolve('Ok')
+      })
+  })
+}
+
+await Query()
+
+
 Data.forEach((i) => {
-    db.run(`INSERT into RainbetPoint0 (RainbetUser, wager) VALUES (?,?)`, [i.user, i.wager])
+  
+    db.run(`INSERT into WeeklyWager (userid, wager) VALUES (?,?)`, [i.user, i.wager])
 })
 
-console.log('Dados atualizados!')
+console.log('Dados de WeeklyWager reescrevido!')
 
 }
 
@@ -134,7 +153,16 @@ async WeeklyDb(user) {
 async LeardBoard() {
     const db = await RunDb()
 
- return new Promise((rct, rsv) => {
+    const queryconsult = () => {
+        return new Promise((resolve, reject) => {
+            db.run(`DELETE FROM LEARDBOARD`, (err) => {
+                if(err) reject('Erro na query')
+            })
+        resolve('')
+        })
+    }
+
+  const query =  await queryconsult()
  db.run(`INSERT INTO LeaderBoard (userid, wager)
  SELECT 
      r.RainbetUser AS userid,
@@ -143,14 +171,13 @@ async LeardBoard() {
      RainbetPoint0 r
  JOIN 
      WeeklyWager w ON r.RainbetUser = w.userid;
- `)
- rct('Tabela LeardBoard atualizada com sucesso')
+ `, () => {
+    console.log(`Tabela LeaderBoard reescrevidas com dados atualizados!`)
  })
 
- 
+ return query
 
 }
-
 async FetchTopLeardBoard() {
     const db = await RunDb()
 

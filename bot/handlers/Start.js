@@ -41,6 +41,7 @@ if(Point0Wager == null ) {
   }
 
 
+
   function ReplaceString(value) {
 
     const valor = parseInt(value)
@@ -75,6 +76,7 @@ if(Point0Wager == null ) {
 
      const Leaderboard = await commands.FetchLeaderBoard()
      
+     console.log(Leaderboard)
 
     ctx.reply(`${User} Aqui está Seu Wager Semanal R$${ReplaceString(WeeklyRace)} `)
 

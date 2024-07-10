@@ -178,7 +178,11 @@ return 'err'
   }
 
   async FetchLeaderBoard() {
+
+    
     const Consult = new DbUtils
+
+    const BoardLoading = Consult.LeardBoard()
 
     try {
     const LeaderBoard = await Consult.FetchTopLeardBoard()
