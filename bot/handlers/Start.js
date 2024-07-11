@@ -73,6 +73,8 @@ if(Point0Wager == null ) {
      }
 
      const Leaderboard = await commands.FetchLeaderBoard()
+
+     if(Leaderboard.length == 0 ) return  
      
      console.log(Leaderboard)
 
