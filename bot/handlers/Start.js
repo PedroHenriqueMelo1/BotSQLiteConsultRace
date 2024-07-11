@@ -80,7 +80,7 @@ if(Point0Wager == null ) {
      
      console.log(Leaderboard)
 
-    ctx.reply(`${User} Aqui está Seu Wager Semanal R$${ReplaceString(WeeklyRace)} `)
+    ctx.reply(`${User} Aqui está Seu Wager Semanal R$ ${ReplaceString(WeeklyRace)} `)
 
     setTimeout(() => {
 
