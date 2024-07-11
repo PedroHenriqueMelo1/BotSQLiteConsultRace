@@ -85,9 +85,9 @@ if(Point0Wager == null ) {
     setTimeout(() => {
 
       ctx.reply(`*       LEADERBOARD 🏁 R$ 150,00 7 Dias
-        1° \\- ${Leaderboard[0].userid} Wager:  R$ ${ReplaceString(Leaderboard[0].wager)} 🥇
-        2 \\- ${Leaderboard[1].userid} Wager:  R$ ${ReplaceString(Leaderboard[1].wager)}  🥈
-        3 \\- ${Leaderboard[2].userid} Wager:  R$ ${ReplaceString(Leaderboard[2].wager)}  🥉
+        1° \\- ${Leaderboard[0].userid} Wager:  R$ ${ReplaceString(Leaderboard[0].wager)} 
+        2 \\- ${Leaderboard[1].userid} Wager:  R$ ${ReplaceString(Leaderboard[1].wager)}  
+        3 \\- ${Leaderboard[2].userid} Wager:  R$ ${ReplaceString(Leaderboard[2].wager)}  
         4 \\- ${Leaderboard[3].userid} Wager:  R$ ${ReplaceString(Leaderboard[3].wager)}
         5 \\- ${Leaderboard[4].userid} Wager:  R$ ${ReplaceString(Leaderboard[4].wager)}
         6 \\- ${Leaderboard[5].userid} Wager:  R$ ${ReplaceString(Leaderboard[5].wager)}
