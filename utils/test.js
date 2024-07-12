@@ -1,6 +1,6 @@
 const fs = require('fs').promises; // Use fs.promises para métodos assíncronos
 
-const filePath = 'Test/data.csv'; // Caminho para o arquivo CSV
+const filePath = 'utils/data.csv'; // Caminho para o arquivo CSV
 
 async function NodeData(filePath) {
   try {
