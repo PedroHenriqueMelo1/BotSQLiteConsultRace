@@ -1,7 +1,7 @@
 
 const { RunDb } = require("../db");
 const { Db } = require("sqlite3");
-const {FetchData} = require("../../Test/test")
+const {FetchData} = require("../../utils/test")
 
 
 class DbUtils {
