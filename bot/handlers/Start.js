@@ -10,7 +10,7 @@ async function Start(bot)   {
 
 
 
-
+commands.DataWeekly()
 
   async function FetchWagerOfUser(user) {
  
