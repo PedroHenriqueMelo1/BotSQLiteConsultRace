@@ -182,7 +182,7 @@ return 'err'
     
     const Consult = new DbUtils
 
-    const BoardLoading = Consult.LeardBoard()
+    const BoardLoading = await Consult.LeardBoard()
 
     try {
     const LeaderBoard = await Consult.FetchTopLeardBoard()
