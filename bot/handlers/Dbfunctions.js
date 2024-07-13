@@ -182,23 +182,68 @@ async LeardBoard() {
 async FetchTopLeardBoard() {
     const db = await RunDb()
 
-   return new Promise((resolve, reject) => {
-    db.all(`SELECT * FROM LeaderBoard
-        ORDER BY wager DESC
-        LIMIT 10`, function(err, rows) {
 
-            if(err) {
-                console.log('Erro')
-            }
-            resolve(rows)
-        
+    const queryconsult = () => {
+        return new Promise((resolve, reject) => {
+            db.run(`DELETE FROM LEADERBOARD`, (err) => {
+                if(err) reject('Erro na query')
+            })
+        console.log(`Dados reescrevidos`)
+        resolve('')
         })
-        
-    
-   }) 
-}
- 
+    }
 
+
+    await queryconsult()
+
+const Insert = () => {
+    return new Promise((resolve, reject) => {
+        
+    db.run(`INSERT INTO LeaderBoard (userid, wager)
+        SELECT 
+            r.RainbetUser AS userid,
+            w.wager - r.wager AS wager
+        FROM 
+            RainbetPoint0 r
+        JOIN 
+            WeeklyWager w ON r.RainbetUser = w.userid;
+        `, () => {
+           console.log(`Tabela LeaderBoard reescrevidas com dados atualizados!`)
+        }, (err) => {
+            if(err) {
+                console.log('Erro ao fazer insert de dados')
+                reject('401')
+            }
+            resolve(201)
+        })
+       
+    })
+}
+  
+await Insert()
+
+
+const selectleardboard = () => {
+    return new Promise((resolve, reject) => {
+        db.all(`SELECT * FROM LeaderBoard
+            ORDER BY wager DESC
+            LIMIT 10`, function(err, rows) {
+    
+                if(err) {
+                    console.log('Erro')
+                }
+                resolve(rows)
+            
+            })
+            
+        
+       }) 
+    }
+     
+    return await selectleardboard()
+    
+}
+  
 }
 
 

@@ -62,7 +62,7 @@ if(Point0Wager == null ) {
      const WeeklyRace = await FetchWagerOfUser(User)
 
      if(WeeklyRace == undefined) {
-      ctx.reply(`User não encontrado verifica o nome e tente novamente.`)
+      ctx.reply(`User não encontrado verifica o nome e tente novamente, Cuidado com o CAPSLOCK insira seu user com o mesmo formato que está no site.`)
       return
      }
   
@@ -95,6 +95,12 @@ if(Point0Wager == null ) {
     }, 500)
   
 
+setTimeout(() => {
+  
+  ctx.reply(`*Prêmios: 1° Lugar ${Leaderboard[0].userid} 🥇 R$ 75,00
+    \n 2° Lugar ${Leaderboard[1].userid} 🥈 R$ 50,00 
+    \n 3° Lugar ${Leaderboard[2].userid} 🥉 R$ 25,00*`, {parse_mode: "MarkdownV2"})
+}, 1000)
 
 
   state.isAllowedToPutName = false;
