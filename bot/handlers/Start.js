@@ -9,8 +9,6 @@ async function Start(bot)   {
   const commands = new Commands(bot)
 
 
-
-
   async function FetchWagerOfUser(user) {
  
     const Result = await commands.FetchPoint0(user)
