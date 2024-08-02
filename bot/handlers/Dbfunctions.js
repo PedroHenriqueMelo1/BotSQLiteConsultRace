@@ -133,7 +133,7 @@ Data.forEach((i) => {
     db.run(`INSERT into WeeklyWager (userid, wager) VALUES (?,?)`, [i.user, i.wager])
 })
 
-console.log('Dados do Point0  reescrevido!')
+console.log('Dados do WeeklyWager  reescrevido!')
 
 }
 
