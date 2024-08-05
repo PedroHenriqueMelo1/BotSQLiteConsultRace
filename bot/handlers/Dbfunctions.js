@@ -1,7 +1,7 @@
 
 const { RunDb } = require("../db");
 const { Db } = require("sqlite3");
-const {FetchData} = require("../../utils/test")
+const {FetchData, FetchPoint0} = require("../../utils/test")
 
 
 class DbUtils {
@@ -104,6 +104,37 @@ async Point0(user) {
 
 
 }
+
+
+async WeeklyDbput() {
+    const bool1 = false
+    if(bool1) {
+    const db = await RunDb()
+    const Data = await FetchPoint0()
+
+    const Query = () => {
+        return new Promise((resolve,reject) => {
+            db.run(`DELETE FROM RainbetPoint0`, function(err) {
+                if(err) {
+                    console.log(`Erro ao remover dados do point0`)
+                    reject('Promessa de inserir dados ao rainbetpoint0 rejeitada')
+                }
+                resolve()
+            })
+        })
+    }
+
+    await Query()
+
+    Data.forEach((i) => {
+        db.run(`Insert Into RainbetPoint0 (RainbetUser, wager) VALUES (?,?)`, [i.user,i.wager])
+    })
+
+    console.log(`Ponto0Reescrevido`)
+
+    }
+}
+
 
 async DailyDbPut() {
  

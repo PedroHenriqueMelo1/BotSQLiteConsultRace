@@ -192,7 +192,14 @@ return 'err'
     }
   }
 
-  async
+  async InsertPoint0() {
+    const Consult = new DbUtils
+    try {
+      const Point0 = await Consult.WeeklyDbput()
+    } catch(err) {
+      console.log(err)
+    }
+  }
 }
 
 

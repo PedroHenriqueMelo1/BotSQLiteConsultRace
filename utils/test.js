@@ -39,6 +39,12 @@ return Date
 
 }
 
+async function FetchPoint0() {
+  const Date = await NodeData('utils/Point0.csv')
+
+  return Date
+}
+
 FetchData()
 
-module.exports = {FetchData}
+module.exports = {FetchData, FetchPoint0}

@@ -9,6 +9,7 @@ async function Start(bot)   {
   const commands = new Commands(bot)
 
   commands.DataWeekly()
+  commands.InsertPoint0()
 
   async function FetchWagerOfUser(user) {
  
