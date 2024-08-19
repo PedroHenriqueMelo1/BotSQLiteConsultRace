@@ -107,7 +107,7 @@ async Point0(user) {
 
 
 async WeeklyDbput() {
-    const bool1 = false
+    const bool1 = true
     if(bool1) {
     const db = await RunDb()
     const Data = await FetchPoint0()
